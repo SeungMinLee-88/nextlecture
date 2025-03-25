@@ -5,7 +5,9 @@ type ReadProps = {
   };
   export default async function Read(props: ReadProps) {
   const id = props.params.id;
-  const resp = await fetch(`http://localhost:9999/topics/${id}`);
+  const url = `${process.env.NEXT_PUBLIC_API_URL}`;
+  console.log("env :" + `${process.env.NEXT_PUBLIC_API_URL}topics/${id}`);
+  const resp = await fetch(url + `/topics/${id}` , {cache:'no-cache'});
   const topic = await resp.json();
     return (
       <>
